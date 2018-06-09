@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "build/config.h"
+#include "config.h"
 
 #ifdef USE_MYMATH
     #include "math/math.h"
