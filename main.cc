@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "math/math.h"
+#include "build/config.h"
+
+#ifdef USE_MYMATH
+    #include "math/math.h"
+#else
+    #include <math.h>
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -10,7 +16,13 @@ int main(int argc, char *argv[])
     }
     double base = atof(argv[1]);
     int exponent = atoi(argv[2]);
-    double result = power(base, exponent);
+    #ifdef USE_MYMATH
+        printf("Now use custom math");
+        double result = power(base, exponent);
+    #else
+        printf("Now use stdlib");
+        double result = pow(base, exponent);
+    #endif
     printf("%g ^ %d is %g\n", base, exponent, result);
     return 0;
 }
